@@ -1,18 +1,18 @@
 const mySpan = document.getElementsByTagName('span');
 console.log(mySpan);
-let paper = mySpan[1];
-console.log(paper.innerHTML);
-console.log(paper.style);
-paperGreen = paper.style.color = 'blue';
+
 let rock = mySpan[0];
 rock.style.color = 'yellow';
 
+let paper = mySpan[1];
+paper.style.color = 'blue';
+
 let scissors = mySpan[2];
-console.log(scissors.getAttribute('class', 'scissors'));
+scissors.getAttribute('class', 'scissors');
 scissors.className = 'text-danger';
 
 // Assigned Value to each Score Variable
-let playerScore = 0;
+let humanScore = 0;
 let computerScore = 0;
 let tieScore = 0;
 
@@ -24,53 +24,59 @@ const tie = 'The result is a tie!';
 
 // Assigned computerPlay Function to Variable computerSelection
 
-function getRandomNumber() {
-    return Math.random();
+function getComputerChoice() {
+  let computerChoice = ['rock', 'paper', 'scissors'];
+  let random = Math.floor(Math.random() * computerChoice.length);
+  return computerChoice[random];
 }
 
-function compareRandomBy(value) {
-    return getRandomNumber() <= value;
+function getHumanChoice() {
+  let humanChoice = prompt(`Input your choice of "Rock, Paper or Scissors"`).toLowerCase();
+  if (humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors') {
+    return humanChoice;
+  } else if (humanChoice === undefined || humanChoice === null || humanChoice.trim() === '') {
+    alert(`You didn't make a choice! Please choose "Rock", "Paper", or "Scissors".`);
+    return getHumanChoice(); // Recursively ask for a valid choice
+  } else {
+    alert(`Invalid choice! Please choose "Rock", "Paper", or "Scissors".`);
+    return getHumanChoice(); // Recursively ask for a valid choice
+  }
 }
 
-// Declared computerPlay Function
-function computerPlay() {
-    if (compareRandomBy(0.2)) {
-        const rock = 'Rock';
-        return rock.toLowerCase() || rock.toUpperCase() || rock
-    } else if (compareRandomBy(0.4)) {
-        const paper = 'Paper';
-        return paper.toLowerCase() || paper.toUpperCase() || paper
-    } else {
-        const scissors = 'Scissors';
-        return scissors.toLowerCase() || scissors.toUpperCase() || scissors
-    }
-}
-
-const computerSelection = computerPlay();
-
+// Assigned Selection Variable
+let computerSelection = getComputerChoice();
+let humanSelection = getHumanChoice();
 
 // Declared playRound Function
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
+function playRound(humanSelection, computerSelection) {
+    if (humanSelection === computerSelection) {
         tieScore++;
+        console.log(`${humanSelection} vs ${computerSelection}`);
         return "It's a tie";
-    } else if (playerSelection === 'rock') {
+    } else if (humanSelection === 'rock') {
+        console.log(`${humanSelection} vs ${computerSelection}`);
         if (computerSelection === 'paper') { computerScore++; return 'You Lose! Paper beats Rock' }
-        if (computerSelection === 'scissors') { playerScore++; return 'You Won! Rock beats Scissors' }
+        if (computerSelection === 'scissors') { humanScore++; return 'You Won! Rock beats Scissors' }
 
-    } else if (playerSelection === 'paper') {
-        if (computerSelection === 'rock') { playerScore++; return 'You Won! Paper beats Rock' }
+    } else if (humanSelection === 'paper') {
+        console.log(`${humanSelection} vs ${computerSelection}`);
+        if (computerSelection === 'rock') { humanScore++; return 'You Won! Paper beats Rock' }
         if (computerSelection === 'scissors') { computerScore++; return 'You Lose! Scissors beats Paper' }
 
-    } else if (playerSelection === 'scissors') {
-        if (computerSelection === 'paper') { playerScore++; return 'You Won! Scissors beats Paper' }
+    } else if (humanSelection === 'scissors') {
+        console.log(`${humanSelection} vs ${computerSelection}`);
+        if (computerSelection === 'paper') { humanScore++; return 'You Won! Scissors beats Paper' }
         if (computerSelection === 'rock') { computerScore++; return 'You Lose! Rock beats Scissors' }
+
     } else {
         return 'Error! You\'ve to choose one';
     }
 }
 
-// Declared Loop
+console.log(playRound(humanSelection, computerSelection));
+console.log(`Human Score (${humanScore}) : Computer Score (${computerScore})`);
+
+/*// Declared Loop
 function game() {
     for (let i = 1; i <= 5; i++) {
         let playerSelection = prompt('Input your choice of "Rock, Paper or Scissors"');
@@ -98,3 +104,4 @@ setTimeout(() => {
     console.log(myParagraph);
     myParagraph.setAttribute('class', 'bg-warning');
 }, 5000);
+*/
