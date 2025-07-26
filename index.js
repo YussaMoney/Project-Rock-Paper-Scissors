@@ -1,16 +1,3 @@
-const mySpan = document.getElementsByTagName("span");
-console.log(mySpan);
-
-let rock = mySpan[0];
-rock.style.color = "yellow";
-
-let paper = mySpan[1];
-paper.style.color = "blue";
-
-let scissors = mySpan[2];
-scissors.getAttribute("class", "scissors");
-scissors.className = "text-danger";
-
 // Assigned Value to each Score Variable
 let humanScore = 0;
 let computerScore = 0;
