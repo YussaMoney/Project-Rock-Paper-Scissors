@@ -113,3 +113,10 @@ button#start:active {
   box-shadow: 0 0 10px #eda01b;
   transform: scale(0.95);
 }
+
+#game-iconsContainerAfterStart {
+  display: flex;
+  gap: 2rem;
+  font-size: 4rem;
+  margin: 5rem 0;
+}
