@@ -104,4 +104,11 @@ function game() {
   alert("GAME OVER");
   return "";
 }
-console.log(game());
+// console.log(game());
+
+function switchAttribute() {
+  const gameIconsContainer = document.querySelector(".game-iconsContainer");
+  console.log(gameIconsContainer);
+  gameIconsContainer.setAttribute("id", "game-iconsContainerAfterStart");
+  gameIconsContainer.removeAttribute("class");
+}
