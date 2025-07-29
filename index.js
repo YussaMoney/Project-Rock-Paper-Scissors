@@ -56,7 +56,6 @@ function playRound(humanSelection, computerSelection) {
   }
 }
 
-
 // Declared Loop
 function game() {
   for (let i = 1; i <= 5; i++) {
@@ -91,7 +90,9 @@ function game() {
     humanSelection = getHumanChoice();
 
     console.log(playRound(humanSelection, computerSelection));
-    console.log(`Human Score (${humanScore}) : Computer Score (${computerScore})`);
+    console.log(
+      `Human Score (${humanScore}) : Computer Score (${computerScore})`
+    );
   }
 
   if (humanScore === computerScore) {
@@ -105,10 +106,16 @@ function game() {
   return "";
 }
 // console.log(game());
+let shootButtonAttribute = () => {
+  const shootButton = document.querySelector("#start");
+  shootButton.innerText = "shoot";
+  shootButton.setAttribute("id", "shoot");
+};
 
 function switchAttribute() {
   const gameIconsContainer = document.querySelector(".game-iconsContainer");
   console.log(gameIconsContainer);
   gameIconsContainer.setAttribute("id", "game-iconsContainerAfterStart");
   gameIconsContainer.removeAttribute("class");
+  shootButtonAttribute();
 }
