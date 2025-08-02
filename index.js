@@ -26,6 +26,8 @@ function getHumanChoice() {
     icon.addEventListener('click', () => {
       humanSelection = icon.id.replace('-icon', '');
       console.log(humanSelection);
+      shootButton.disabled = false;
+      shootButton.setAttribute("id", "shoot");
       return humanSelection;
     });
   });
@@ -93,26 +95,29 @@ function game() {
 
   humanSelection = null; // Reset humanSelection for the next round
   computerSelection = null; // Reset computerSelection for the next round
-  
-  if (humanScore === computerScore) {
-    alert(tie.toUpperCase());
-  } else if (humanScore > computerScore) {
-    alert(win.toUpperCase());
-  } else {
-    alert(lose.toUpperCase());
+  if (round >= 5) {  
+    if (humanScore === computerScore) {
+      console.log(tie.toUpperCase());
+    } else if (humanScore > computerScore) {
+      console.log(win.toUpperCase());
+    } else {
+      console.log(lose.toUpperCase());
+    }
+    console.log("GAME OVER");
   }
-  alert("GAME OVER");
+
+  shootButton.disabled = true; // Disable the shoot button after the round
+  shootButton.removeAttribute("id");
   // return;
 }
 
 // Function to change the button attribute after clicking "start"
 // This function will change the button text to "shoot" and update its ID
+const shootButton = document.querySelector("#start");
 let shootButtonAttribute = () => {
-  const shootButton = document.querySelector("#start");
   shootButton.innerText = "shoot";
-  shootButton.setAttribute("id", "shoot");
-  // shootButton.setAttribute("disabled", "disabled");
-  // shootButton.removeAttribute("id");
+  shootButton.removeAttribute("id");
+  shootButton.disabled = true;
   humanSelection = getHumanChoice();
   shootButton.setAttribute("onclick", "game()");
 };
