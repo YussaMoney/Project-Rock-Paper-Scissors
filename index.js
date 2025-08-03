@@ -103,6 +103,7 @@ function game() {
     } else {
       console.log(lose.toUpperCase());
     }
+    shootButton.removeEventListener("click", game());
     console.log("GAME OVER");
   }
 
