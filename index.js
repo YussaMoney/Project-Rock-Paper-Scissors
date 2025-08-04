@@ -13,6 +13,8 @@ const tie = "The result is a tie!";
 const gameIconsContainer = document.querySelector(".game-iconsContainer");
 const iconItem = document.querySelectorAll(".icon-item");
 const roundDiv = document.querySelector(".round");
+const humanScoreHolder = document.querySelector("#playerScore #score"); 
+const computerScoreHolder = document.querySelector("#computerScore #score");
 
 // Declared getComputerChoice Function
 function getComputerChoice() {
@@ -88,12 +90,14 @@ function game() {
   computerSelection = getComputerChoice();
   console.log(playRound(humanSelection, computerSelection));
   roundDiv.innerText = `Round ${round}`;
-  console.log(
-    `Round ${round}
-    Human Score (${humanScore}) : Computer Score (${computerScore})`
-  );
+  roundDiv.style.textShadow = "0 0 5px #d80085ff";
+  humanScoreHolder.innerText = humanScore;
+  computerScoreHolder.style.color = humanScoreHolder.style.color = "#00e1ff";
+  computerScoreHolder.style.textShadow = humanScoreHolder.style.textShadow = "0 0 5px #01bdff";
+  computerScoreHolder.innerText = computerScore;
+  // humanScoreHolder.style.color = "#00e1ff";
+  // computerScoreHolder.style.textShadow = "0 0 5px #01bdff";
 
-  
   if (round >= 5) {  
     if (humanScore === computerScore) {
       console.log(tie.toUpperCase());
