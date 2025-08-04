@@ -12,7 +12,7 @@ const tie = "The result is a tie!";
 
 const gameIconsContainer = document.querySelector(".game-iconsContainer");
 const iconItem = document.querySelectorAll(".icon-item");
-
+const roundDiv = document.querySelector(".round");
 
 // Declared getComputerChoice Function
 function getComputerChoice() {
@@ -87,14 +87,13 @@ function game() {
 
   computerSelection = getComputerChoice();
   console.log(playRound(humanSelection, computerSelection));
-
+  roundDiv.innerText = `Round ${round}`;
   console.log(
     `Round ${round}
     Human Score (${humanScore}) : Computer Score (${computerScore})`
   );
 
-  humanSelection = null; // Reset humanSelection for the next round
-  computerSelection = null; // Reset computerSelection for the next round
+  
   if (round >= 5) {  
     if (humanScore === computerScore) {
       console.log(tie.toUpperCase());
@@ -103,11 +102,14 @@ function game() {
     } else {
       console.log(lose.toUpperCase());
     }
-    shootButton.removeEventListener("click", game());
+    shootButton.disabled = true;
+    round = humanScore = computerScore = 0;
     console.log("GAME OVER");
+    
   }
-
   shootButton.disabled = true; // Disable the shoot button after the round
+  humanSelection = null; // Reset humanSelection for the next round
+  computerSelection = null; // Reset computerSelection for the next round
   shootButton.removeAttribute("id");
   // return;
 }
