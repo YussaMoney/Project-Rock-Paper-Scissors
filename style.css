@@ -42,16 +42,27 @@
 .score-boardContainer {
   border: 4px solid #1900f6a9;
   box-shadow: 0 0 20px #1900f6a9;
-  padding: 0.5rem 2.5rem;
   border-radius: 0.5rem;
+  width: 100%;
+  text-align: center;
+  margin: 1rem 0 2rem;
+}
+
+.score-board {
+  padding: 0.5rem 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  text-align: center;
   text-transform: uppercase;
-  width: 100%;
-  margin: 2rem 0;
+}
+
+.round {
+  text-align: center;
+  padding: 0.5rem 0;
+  font: 1.5em bolder;
+  color: #01bdff;
+  text-shadow: 0 0 5px #00e1ff;
 }
 
 .score-boardContainer #score {
