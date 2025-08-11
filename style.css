@@ -193,7 +193,7 @@ button#shoot:active {
   color: #00e1ff;
   text-shadow: 0 0 10px #01bdff;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   width: 70%;
   height: 60%;
   z-index: 1;

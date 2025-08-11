@@ -122,6 +122,7 @@ function game() {
     shootButton.disabled = true;
     round = humanScore = computerScore = 0;
     gameStatus.lastElementChild.innerText = "GAME OVER";
+    gameStatus.style.display = "flex";
   }
   shootButton.disabled = true; // Disable the shoot button after the round
   humanSelection = null; // Reset humanSelection for the next round
