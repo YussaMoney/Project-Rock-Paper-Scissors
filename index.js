@@ -1,11 +1,10 @@
-// Assigned Value to each Score Variable
+// Assigned Value to each Variable
 let humanScore = 0;
 let computerScore = 0;
 let tieScore = 0;
 let round = 0;
 let humanSelection = null;
 let computerSelection = null;
-// Assigned Value to Win, Lose & Tie Variable
 const win = "You Win this game!";
 const lose = "You Lose this game!";
 const tie = "The result is a tie!";
@@ -17,6 +16,8 @@ const humanScoreHolder = document.querySelector("#playerScore #score");
 const computerScoreHolder = document.querySelector("#computerScore #score");
 const playerChoiceMsg = document.querySelector("#playerChoice");
 const computerChoiceMsg = document.querySelector("#computerChoice");
+const gameMessageContainer = document.querySelector(".gameMessageContainer");
+const gameStatus = document.querySelector(".gameStatus");
 
 // Declared getComputerChoice Function
 function getComputerChoice() {
@@ -42,48 +43,49 @@ function playRound(humanSelection, computerSelection) {
   if (humanSelection === computerSelection) {
     round++;
     tieScore++;
-    console.log(`${humanSelection} vs ${computerSelection}`);
-    return "It's a tie";
+    gameMessageContainer.firstElementChild.innerText = `${humanSelection} vs ${computerSelection}`;
+    gameMessageContainer.lastElementChild.innerText = "It's a tie";
 
   } else if (humanSelection === "rock") {
-    console.log(`${humanSelection} vs ${computerSelection}`);
+    gameMessageContainer.firstElementChild.innerText = `${humanSelection} vs ${computerSelection}`;
     if (computerSelection === "paper") {
       round++;
       computerScore++;
-      return "You Lose! Paper beats Rock";
+      gameMessageContainer.lastElementChild.innerText = "You Lose! Paper beats Rock";
     }
     if (computerSelection === "scissors") {
       round++;
       humanScore++;
-      return "You Won! Rock beats Scissors";
+      gameMessageContainer.lastElementChild.innerText = "You Won! Rock beats Scissors";
     }
   } else if (humanSelection === "paper") {
-    console.log(`${humanSelection} vs ${computerSelection}`);
+    gameMessageContainer.firstElementChild.innerText = `${humanSelection} vs ${computerSelection}`;
     if (computerSelection === "rock") {
       round++;
       humanScore++;
-      return "You Won! Paper beats Rock";
+      gameMessageContainer.lastElementChild.innerText = "You Won! Paper beats Rock";
     }
     if (computerSelection === "scissors") {
       round++;
       computerScore++;
-      return "You Lose! Scissors beats Paper";
+      gameMessageContainer.lastElementChild.innerText = "You Lose! Scissors beats Paper";
     }
   } else if (humanSelection === "scissors") {
-    console.log(`${humanSelection} vs ${computerSelection}`);
+    gameMessageContainer.firstElementChild.innerText = `${humanSelection} vs ${computerSelection}`;
     if (computerSelection === "paper") {
       round++;
       humanScore++;
-      return "You Won! Scissors beats Paper";
+      gameMessageContainer.lastElementChild.innerText = "You Won! Scissors beats Paper";
     }
     if (computerSelection === "rock") {
       round++;
       computerScore++;
-      return "You Lose! Rock beats Scissors";
+      gameMessageContainer.lastElementChild.innerText = "You Lose! Rock beats Scissors";
     }
   } else {
     return "Error! You've to choose one";
   }
+
 }
 
 // Declared game Function
@@ -92,36 +94,39 @@ function game() {
 
   computerSelection = getComputerChoice();
   computerChoiceMsg.innerText = `Computer chose ${computerSelection}`
-  console.log(playRound(humanSelection, computerSelection));
+  playRound(humanSelection, computerSelection);
   roundDiv.innerText = `Round ${round}`;
+
+  setTimeout(() => {
+    computerChoiceMsg.innerText = playerChoiceMsg.innerText = '';
+    gameMessageContainer.style.display = "flex";
+    setTimeout(() => {
+      gameMessageContainer.style.display = "none";
+    }, timeout = 900);
+  }, timeout = 950);
+  
+
   humanScoreHolder.innerText = humanScore;
   computerScoreHolder.style.color = humanScoreHolder.style.color = "#00e1ff";
   roundDiv.style.textShadow = computerScoreHolder.style.textShadow = humanScoreHolder.style.textShadow = "0 0 5px #01bdff";
   computerScoreHolder.innerText = computerScore;
 
-  setTimeout(() => {
-    computerChoiceMsg.innerText = playerChoiceMsg.innerText = '';
-  }, timeout = 950);
-
-
   if (round >= 5) {  
     if (humanScore === computerScore) {
-      console.log(tie.toUpperCase());
+      gameStatus.firstElementChild.innerText = tie.toUpperCase();
     } else if (humanScore > computerScore) {
-      console.log(win.toUpperCase());
+      gameStatus.firstElementChild.innerText = win.toUpperCase();
     } else {
-      console.log(lose.toUpperCase());
+      gameStatus.firstElementChild.innerText = lose.toUpperCase();
     }
     shootButton.disabled = true;
     round = humanScore = computerScore = 0;
-    console.log("GAME OVER");
-    
+    gameStatus.lastElementChild.innerText = "GAME OVER";
   }
   shootButton.disabled = true; // Disable the shoot button after the round
   humanSelection = null; // Reset humanSelection for the next round
   computerSelection = null; // Reset computerSelection for the next round
   shootButton.removeAttribute("id");
-  // return;
 }
 
 // Function to change the button attribute after clicking "start"
