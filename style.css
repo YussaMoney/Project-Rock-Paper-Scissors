@@ -155,7 +155,7 @@ button#start:active {
   display: flex;
   gap: 2rem;
   font-size: 4rem;
-  margin: 3.5rem 0;
+  margin-bottom: 1.5rem;
 }
 
 button#shoot {
@@ -176,4 +176,10 @@ button#shoot:hover {
 button#shoot:active {
   box-shadow: 0 0 10px #00e1ff;
   transform: scale(0.95);
+}
+
+.choice {
+  margin-bottom: 1.5rem;
+  color: #ffaf00;
+  font: 1.2rem bolder;
 }

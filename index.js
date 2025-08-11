@@ -15,6 +15,8 @@ const iconItem = document.querySelectorAll(".icon-item");
 const roundDiv = document.querySelector(".round");
 const humanScoreHolder = document.querySelector("#playerScore #score"); 
 const computerScoreHolder = document.querySelector("#computerScore #score");
+const playerChoiceMsg = document.querySelector("#playerChoice");
+const computerChoiceMsg = document.querySelector("#computerChoice");
 
 // Declared getComputerChoice Function
 function getComputerChoice() {
@@ -27,7 +29,7 @@ function getHumanChoice() {
   iconItem.forEach(icon => {
     icon.addEventListener('click', () => {
       humanSelection = icon.id.replace('-icon', '');
-      console.log(humanSelection);
+      playerChoiceMsg.innerText = `You chose ${humanSelection}`;
       shootButton.disabled = false;
       shootButton.setAttribute("id", "shoot");
       return humanSelection;
@@ -83,20 +85,24 @@ function playRound(humanSelection, computerSelection) {
     return "Error! You've to choose one";
   }
 }
+
 // Declared game Function
 // This function will be called when the user clicks the "shoot" button
 function game() {
 
   computerSelection = getComputerChoice();
+  computerChoiceMsg.innerText = `Computer chose ${computerSelection}`
   console.log(playRound(humanSelection, computerSelection));
   roundDiv.innerText = `Round ${round}`;
-  roundDiv.style.textShadow = "0 0 5px #d80085ff";
   humanScoreHolder.innerText = humanScore;
   computerScoreHolder.style.color = humanScoreHolder.style.color = "#00e1ff";
-  computerScoreHolder.style.textShadow = humanScoreHolder.style.textShadow = "0 0 5px #01bdff";
+  roundDiv.style.textShadow = computerScoreHolder.style.textShadow = humanScoreHolder.style.textShadow = "0 0 5px #01bdff";
   computerScoreHolder.innerText = computerScore;
-  // humanScoreHolder.style.color = "#00e1ff";
-  // computerScoreHolder.style.textShadow = "0 0 5px #01bdff";
+
+  setTimeout(() => {
+    computerChoiceMsg.innerText = playerChoiceMsg.innerText = '';
+  }, timeout = 950);
+
 
   if (round >= 5) {  
     if (humanScore === computerScore) {
