@@ -29,6 +29,7 @@ function getComputerChoice() {
 function getHumanChoice() {
   iconItem.forEach(icon => {
     icon.addEventListener('click', () => {
+      icon.classList.add("selected");
       humanSelection = icon.id.replace('-icon', '');
       playerChoiceMsg.innerText = `You chose ${humanSelection}`;
       shootButton.disabled = false;
@@ -91,11 +92,11 @@ function playRound(humanSelection, computerSelection) {
 // Declared game Function
 // This function will be called when the user clicks the "shoot" button
 function game() {
-
   computerSelection = getComputerChoice();
   computerChoiceMsg.innerText = `Computer chose ${computerSelection}`
   playRound(humanSelection, computerSelection);
   roundDiv.innerText = `Round ${round}`;
+  iconItem.forEach(icon => icon.classList.remove("selected"));
 
   setTimeout(() => {
     computerChoiceMsg.innerText = playerChoiceMsg.innerText = '';
@@ -122,7 +123,9 @@ function game() {
     shootButton.disabled = true;
     round = humanScore = computerScore = 0;
     gameStatus.lastElementChild.innerText = "GAME OVER";
-    gameStatus.style.display = "flex";
+    setTimeout(() => {
+      gameStatus.style.display = "flex";
+    }, 2000);
   }
   shootButton.disabled = true; // Disable the shoot button after the round
   humanSelection = null; // Reset humanSelection for the next round
@@ -144,6 +147,9 @@ let shootButtonAttribute = () => {
 // Function to switch the attribute of the game icons container
 // This function will change the ID of the container to "game-iconsContainerAfterStart"
 function switchAttribute() {
+  iconItem.forEach(icon => {
+    icon.style.cursor = "pointer"
+  });
   gameIconsContainer.setAttribute("id", "game-iconsContainerAfterStart");
   gameIconsContainer.removeAttribute("class");
   shootButtonAttribute();
