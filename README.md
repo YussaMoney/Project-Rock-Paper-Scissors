@@ -2,7 +2,7 @@
 
 This project is created using mainly `JavaScript` with its Linters also.
 Rock-Paper-Scissors is a Game requiring 2 or more people where `Rock` beats `Scissors`; `Scissors` beats `Paper` and `Paper` beats `Rock`.
-Its can only be play in the `console` now.
+It can only play up to 5 rounds, after that it is needed to be refresh.
 
 
 ## Built With
@@ -39,7 +39,7 @@ Web browser(chrome)
 👤 **Azeez Yusuf O.**
 
 - Github: [@YussaMoney](https://github.com/YussaMoney)
-- Twitter: [@YussaMoney](https://twitter.com/YussaMoney)
+- Twitter: [@YussaMoney](https://twitter.com/0xyussa)
 - Linkedin: [@YussaMoney](https://www.linkedin.com/in/yussamoney)
 
 ## 🤝 Contributing
